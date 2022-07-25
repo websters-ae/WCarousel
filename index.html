@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="WCarousel.css" />
+    <link rel="stylesheet" type="text/css" href="my-styles.css" />
+    <script src="WCarousel.js"></script>
+</head>
+
+<body>
+    <div class="my-wrapper" style="width: 600px; height: 300px;">
+        <div class="my-carousel">
+            <div><img src="https://via.placeholder.com/300?text=example1" alt="example1"></div>
+            <div><img src="https://via.placeholder.com/300?text=example2" alt="example2"></div>
+            <div><img src="https://via.placeholder.com/300?text=example3" alt="example3"></div>
+            <div><img src="https://via.placeholder.com/300?text=example4" alt="example4"></div>
+            <div><img src="https://via.placeholder.com/300?text=example5" alt="example5"></div>
+            <div><img src="https://via.placeholder.com/300?text=example6" alt="example6"></div>
+            <div><img src="https://via.placeholder.com/300?text=example7" alt="example7"></div>
+            <div><img src="https://via.placeholder.com/300?text=example8" alt="example8"></div>
+            <div><img src="https://via.placeholder.com/300?text=example9" alt="example9"></div>
+            <div><img src="https://via.placeholder.com/300?text=example10" alt="example10"></div>
+            <div><img src="https://via.placeholder.com/300?text=example11" alt="example11"></div>
+            <div><img src="https://via.placeholder.com/300?text=example12" alt="example12"></div>
+            <div><img src="https://via.placeholder.com/300?text=example13" alt="example13"></div>
+            <div><img src="https://via.placeholder.com/300?text=example14" alt="example14"></div>
+            <div><img src="https://via.placeholder.com/300?text=example15" alt="example15"></div>
+        </div>
+        <button class="wc-prev">&laquo;</button>
+        <button class="wc-next">&raquo;</button>
+        <div id="wc-dots"></div>
+        <script>
+            window.addEventListener('load', function () {
+                // console.info('running!')
+                let element = document.querySelector('.my-carousel')
+                new WCarousel(element, {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: '#wc-dots',
+                    draggable: true,
+                    arrows: {
+                        prev: '.wc-prev',
+                        next: '.wc-next'
+                    }
+                })
+            })
+        </script>
+    </div>
+</body>
+
+</html>

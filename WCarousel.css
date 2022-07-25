@@ -1,0 +1,140 @@
+.wc-control {
+    margin: 0 auto;
+    position: relative;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    transform: translateZ(0);
+}
+
+.wc-track {
+    transform: translateZ(0);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    z-index: 1;
+}
+
+.wc-control.draggable {
+    user-select: none;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.wc-control.draggable .wc-slide img {
+    user-select: none;
+    pointer-events: none;
+}
+
+.wc-control.drag {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+.wc-slide {
+    user-select: none;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    min-width: 150px;
+}
+
+.wc-slide img {
+    max-width: 100%;
+}
+
+.wc-prev,
+.wc-next {
+    user-select: none;
+    position: absolute;
+    outline: none;
+    background: none;
+    padding: 0;
+    z-index: 2;
+    font-size: 40px;
+    text-decoration: none;
+    left: -23px;
+    border: 0;
+    top: 30%;
+    cursor: pointer;
+    color: #666;
+    opacity: 1;
+    line-height: 1;
+    transition: opacity .5s cubic-bezier(.17, .67, .83, .67),
+        color .5s cubic-bezier(.17, .67, .83, .67);
+}
+
+.wc-prev:hover,
+.wc-next:hover,
+.wc-prev:focus,
+.wc-next:focus {
+    color: #a89cc8;
+}
+
+.wc-next {
+    right: -23px;
+    left: auto;
+}
+
+.wc-next.disabled,
+.wc-prev.disabled {
+    opacity: .25;
+    color: #666;
+    cursor: default;
+}
+
+.wc-hide {
+    opacity: 0;
+}
+
+.wc-dots {
+    user-select: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.wc-dot {
+    border: 0;
+    padding: 0;
+    user-select: none;
+    outline: none;
+    display: block;
+    cursor: pointer;
+    color: #ccc;
+    border-radius: 999px;
+    background: #ccc;
+    width: 12px;
+    height: 12px;
+    margin: 7px;
+}
+
+.wc-dot:hover,
+.wc-dot:focus,
+.wc-dot.active {
+    background: #a89cc8;
+}
+
+.wc-control::-webkit-scrollbar {
+    opacity: 0;
+    height: 0;
+}
+
+@media(max-width: 36em) {
+    .wc-control::-webkit-scrollbar {
+        opacity: 1;
+        -webkit-appearance: none;
+        width: 7px;
+        height: 3px;
+    }
+
+    .wc-control::-webkit-scrollbar-thumb {
+        opacity: 1;
+        border-radius: 99px;
+        background-color: rgba(156, 156, 156, 0.25);
+        box-shadow: 0 0 1px rgba(255, 255, 255, .25);
+    }
+}
