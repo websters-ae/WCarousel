@@ -1,0 +1,2 @@
+# WCarousel
+Simple JavaScript carousel
