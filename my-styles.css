@@ -6,12 +6,13 @@
     border: 1px solid red;
 }
 
-.my-carousel {
+/* .my-carousel {
     min-height: 300px;
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .my-wrapper {
+        width: 375px;
         width: 100%;
     }
-}
+} */

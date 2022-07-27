@@ -41,7 +41,7 @@
         self.slide = 0
         self.arrows = {}
 
-        self.opt = self.opt
+        self._opt = self.opt
 
         // items wrapper
         self.track = document.createElement('div')
@@ -68,9 +68,9 @@
         let self = this
         self.slides = self.track.children;
 
-        [].forEach.call(self.slides, function (e, i) {
-            e.classList.add('wc-slide')
-            e.setAttribute('data-wcslide', ++i)
+        self.forEachTwo(self.slides, (element, index) => {
+            element.classList.add('wc-slide')
+            element.setAttribute('data-wcslide', ++index)
         })
 
         self.containerWidth = self.ele.clientWidth
@@ -96,8 +96,7 @@
 
         let width = 0, height = 0;
 
-        // set slide dimensions
-        [].forEach.call(self.slides, function (e) {
+        self.forEachTwo(self.slides, (e) => {
             e.style.height = 'auto'
             e.style.width = self.itemWidth + 'px'
             width += self.itemWidth
@@ -243,7 +242,7 @@
 
     wcPrototype.settingsBreakpoint = function () {
         let self = this
-        const resp = self.opt.responsive
+        const resp = self._opt.responsive
 
         if (resp) {
             // Sort the breakpoints in mobile first order
@@ -251,11 +250,14 @@
                 return b.breakpoint - a.breakpoint
             })
 
+            document.getElementById('feedback1').innerText = _window.innerWidth + 'px'
+            document.getElementById('feedback2').innerText = document.body.clientWidth + 'px'
+
             for (let i = 0; i < resp.length; ++i) {
                 let size = resp[i]
-                if (_window.innerWidth >= size.breakpoint) {
+                if (document.body.clientWidth >= size.breakpoint) {
                     if (self.breakpoint !== size.breakpoint) {
-                        self.opt = Object.assign({}, self.opt, size.settings)
+                        self.opt = Object.assign({}, self._opt, size.settings)
                         self.breakpoint = size.breakpoint
                         return true
                     }
@@ -265,7 +267,7 @@
         }
         // set back to defaults in case they were overriden
         const breakpointChanged = self.breakpoint !== 0
-        self.opt = Object.assign({}, self.opt)
+        self.opt = Object.assign({}, self._opt)
         self.breakpoint = 0
         return breakpointChanged
     }
@@ -345,8 +347,7 @@
             self.page = self.dots ? self.dots.children.length - 1 : 0
         }
 
-
-        [].forEach.call(self.slides, function (slide, index) {
+        self.forEachTwo(self.slides, (slide, index) => {
             const slideClasses = slide.classList
             const wasVisible = slideClasses.contains('visible')
             const start = self.ele.scrollLeft
@@ -354,10 +355,8 @@
             const itemStart = self.itemWidth * index
             const itemEnd = itemStart + self.itemWidth;
 
-            [].forEach.call(slideClasses, function (className) {
-                /^left|right/.test(className) && slideClasses.remove(className)
-            })
-
+            self.forEachTwo(slideClasses, (className) => /^left|right/.test(className) && slideClasses.remove(className))
+    
             slideClasses.toggle('active', self.slide === index)
             if (middle === index || (extraMiddle && extraMiddle === index)) {
                 slideClasses.add('center')
@@ -370,12 +369,12 @@
                     ].join('-')
                 )
             }
-
+    
             const isVisible = Math.ceil(itemStart) >= Math.floor(start)
                 && Math.floor(itemEnd) <= Math.ceil(end)
-
+    
             slideClasses.toggle('visible', isVisible)
-
+    
             if (isVisible !== wasVisible) {
                 self.emit('slide-' + (isVisible ? 'visible' : 'hidden'), {
                     slide: index
@@ -384,9 +383,7 @@
         })
 
         if (self.dots) {
-            [].forEach.call(self.dots.children, function (dot, index) {
-                dot.classList.toggle('active', self.page === index)
-            })
+            self.forEachTwo(self.dots.children, (e, i) => e.classList.toggle('active', self.page === i))
         }
 
         if (event && self.opt.scrollLock) {
@@ -415,6 +412,10 @@
         const step = this.opt.slidesToScroll % 1 || 1
         const inv = 1.0 / step
         return Math.round(double * inv) / inv
+    }
+
+    wcPrototype.refresh = function (paging) {
+        this.init(true, paging)
     }
 
     wcPrototype.scrollItem = function (slide, dot, e) {
@@ -497,6 +498,19 @@
             detail: arg
         })
         self.ele.dispatchEvent(e)
+    }
+
+    wcPrototype.forEachTwo = function (arr, func) {
+        let isNotEven = arr.length % 2 !== 0
+        let count = Math.floor(arr.length / 2)
+        for (let i =0, j = count; i < count; i++, j++) {
+            func(arr[i], i)
+            func(arr[j], j)
+        }
+        if (isNotEven) {
+            let index = arr.length - 1
+            func(arr[index], index)
+        }
     }
 
     return WCarousel
