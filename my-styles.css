@@ -1,5 +1,6 @@
 .my-wrapper {
-    width: 100%;
+    width: 1530px;
+    height: auto;
     margin: 0 auto;
     position: relative;
     border: 1px solid red;
@@ -7,4 +8,10 @@
 
 .my-carousel {
     min-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .my-wrapper {
+        width: 100%;
+    }
 }

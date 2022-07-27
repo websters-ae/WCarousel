@@ -56,13 +56,21 @@
     text-decoration: none;
     left: -23px;
     border: 0;
-    top: 30%;
+    top: 40%;
     cursor: pointer;
     color: #666;
     opacity: 1;
     line-height: 1;
     transition: opacity .5s cubic-bezier(.17, .67, .83, .67),
         color .5s cubic-bezier(.17, .67, .83, .67);
+        
+    --radius: 44px;
+    width: var(--radius);
+    height: var(--radius);
+    line-height: 0;
+    border-radius: 50px;
+    background: #fff;
+    opacity: 0.9;
 }
 
 .wc-prev:hover,
@@ -77,11 +85,17 @@
     left: auto;
 }
 
+.wc-prev:before {
+    content: url('data:image/svg+xml,<svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
+.wc-next:before {
+    content: url('data:image/svg+xml,<svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
 .wc-next.disabled,
 .wc-prev.disabled {
-    opacity: .25;
-    color: #666;
-    cursor: default;
+    display: none;
 }
 
 .wc-hide {
@@ -107,8 +121,9 @@
     color: #ccc;
     border-radius: 999px;
     background: #ccc;
-    width: 12px;
-    height: 12px;
+    --radius: 10px;
+    width: var(--radius);
+    height: var(--radius);
     margin: 7px;
 }
 

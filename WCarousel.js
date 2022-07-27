@@ -73,6 +73,8 @@
             e.setAttribute('data-wcslide', ++i)
         })
 
+        self.containerWidth = self.ele.clientWidth
+
         let breakpointChanged = self.settingsBreakpoint()
         if (!paging) paging = breakpointChanged
 
@@ -234,7 +236,7 @@
         if (self.mouseDown) {
             self.isDrag = true
             self.ele.scrollLeft +=
-                (self.mouseDown - e.clientX) * (self.opt.dragVelocity || 3.3)
+                (self.mouseDown - e.clientX) * (self.opt.dragVelocity || 1.5)
             self.mouseDown = e.clientX
         }
     }
@@ -416,7 +418,9 @@
     }
 
     wcPrototype.scrollItem = function (slide, dot, e) {
-        if (e) e.preventDefault()
+        if (e) {
+            e.preventDefault()
+        }    
 
         var self = this
 

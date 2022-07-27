@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="my-wrapper" style="width: 600px; height: 300px;">
+    <div class="my-wrapper">
         <div class="my-carousel">
             <div><img src="https://via.placeholder.com/300?text=example1" alt="example1"></div>
             <div><img src="https://via.placeholder.com/300?text=example2" alt="example2"></div>
@@ -29,17 +29,16 @@
             <div><img src="https://via.placeholder.com/300?text=example14" alt="example14"></div>
             <div><img src="https://via.placeholder.com/300?text=example15" alt="example15"></div>
         </div>
-        <button class="wc-prev">&laquo;</button>
-        <button class="wc-next">&raquo;</button>
+        <button class="wc-prev"></button>
+        <button class="wc-next"></button>
         <div id="wc-dots"></div>
         <script>
             window.addEventListener('load', function () {
-                // console.info('running!')
                 let element = document.querySelector('.my-carousel')
                 new WCarousel(element, {
-                    slidesToShow: 1,
+                    slidesToShow: 5,
                     slidesToScroll: 1,
-                    dots: '#wc-dots',
+                    // dots: '#wc-dots',
                     draggable: true,
                     arrows: {
                         prev: '.wc-prev',
