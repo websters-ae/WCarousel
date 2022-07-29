@@ -38,7 +38,7 @@
     align-content: center;
     width: 100%;
     min-width: 150px;
-    /* border: 1px solid red; */
+    display: flex;
 }
 
 .wc-slide img {
@@ -64,7 +64,7 @@
     line-height: 1;
     transition: opacity .5s cubic-bezier(.17, .67, .83, .67),
         color .5s cubic-bezier(.17, .67, .83, .67);
-        
+
     --radius: 44px;
     width: var(--radius);
     height: var(--radius);

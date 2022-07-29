@@ -250,9 +250,6 @@
                 return b.breakpoint - a.breakpoint
             })
 
-            document.getElementById('feedback1').innerText = _window.innerWidth + 'px'
-            document.getElementById('feedback2').innerText = document.body.clientWidth + 'px'
-
             for (let i = 0; i < resp.length; ++i) {
                 let size = resp[i]
                 if (document.body.clientWidth >= size.breakpoint) {
