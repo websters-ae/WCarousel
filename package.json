@@ -1,0 +1,52 @@
+{
+  "name": "wcarousel",
+  "version": "1.0.0",
+  "description": "Another lightweight and fast carousel",
+  "main": "WCarousel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/websters-ae/WCarousel.git"
+  },
+  "keywords": [
+    "carousel",
+    "scrolling",
+    "list",
+    "paging",
+    "performance"
+  ],
+  "author": "Celso Jr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/websters-ae/WCarousel/issues"
+  },
+  "homepage": "https://github.com/websters-ae/WCarousel#readme",
+  "devDependencies": {
+    "css-minify": "^2.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "standard": "^17.0.0",
+    "uglify-js": "^3.16.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "wcarousel.js": [
+        "prettier --write",
+        "standard --fix",
+        "css-minify -f WCarousel.css -o ./dist/ --",
+        "uglifyjs ./WCarousel.js --compress --mangle --comments -o ./dist/WCarousel.min.js --"
+      ]
+    },
+    "ignore": [
+      "*.min.js"
+    ]
+  }
+}
