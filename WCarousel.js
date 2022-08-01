@@ -1,17 +1,17 @@
-(function (factory) {
+;(function (factory) {
     typeof define === 'function' && define.amd
         ? define(factory)
         : typeof exports === 'object'
             ? (module.exports = factory())
             : factory()
 })(function () {
-    ('use strict')
+    ;('use strict')
 
     const _window = typeof window !== 'undefined' ? window : this
 
     const WCarousel = (_window.WCarousel = function (element, settings) {
         if (element.wc) return element.wc
-        let self = this
+        const self = this
 
         self.ele = element
         self.ele.classList.add('wc-control')
@@ -65,8 +65,8 @@
     const wcPrototype = WCarousel.prototype
 
     wcPrototype.init = function (refresh, paging) {
-        let self = this
-        self.slides = self.track.children;
+        const self = this
+        self.slides = self.track.children
 
         self.forEachTwo(self.slides, (element, index) => {
             element.classList.add('wc-slide')
@@ -75,10 +75,10 @@
 
         self.containerWidth = self.ele.clientWidth
 
-        let breakpointChanged = self.settingsBreakpoint()
+        const breakpointChanged = self.settingsBreakpoint()
         if (!paging) paging = breakpointChanged
 
-        if (self.opt.slidesToShow === 'auto' || typeof self.opt.autoSlide !== 'undefined') {
+    if (self.opt.slidesToShow === 'auto' || typeof self.opt.autoSlide !== 'undefined') {
             const slideCount = self.containerWidth / self.opt.itemWidth
 
             self.opt.autoSlide = self.opt.slidesToShow = self.opt.exactWidth
@@ -92,9 +92,10 @@
 
         self.itemWidth = self.opt.exactWidth
             ? self.opt.itemWidth
-            : self.containerWidth / self.opt.slidesToShow;
+            : self.containerWidth / self.opt.slidesToShow
 
-        let width = 0, height = 0;
+        let width = 0
+        let height = 0
 
         self.forEachTwo(self.slides, (e) => {
             e.style.height = 'auto'
@@ -123,7 +124,7 @@
     }
 
     wcPrototype.bindArrows = function () {
-        let self = this
+        const self = this
         if (!self.opt.arrows) {
             Object.keys(self.arrows).forEach(function (direction) {
                 const element = self.arrows[direction]
@@ -131,7 +132,7 @@
             })
             return
         }
-        ['prev', 'next'].forEach(function (direction) {
+        ;['prev', 'next'].forEach(function (direction) {
             let arrow = self.opt.arrows[direction]
             if (arrow) {
                 if (typeof arrow === 'string') {
@@ -152,7 +153,7 @@
     }
 
     wcPrototype.buildDots = function () {
-        let self = this
+        const self = this
 
         if (!self.opt.dots) {
             if (self.dots) self.dots.innerHTML = ''
@@ -168,7 +169,7 @@
         self.dots.setAttribute('role', 'tablist')
         self.dots.classList.add('wc-dots')
 
-        for (let i = 0; i < Math.ceil(self.slides.length / self.opt.slidesToShow); ++i) {
+    for (let i = 0; i < Math.ceil(self.slides.length / self.opt.slidesToShow); ++i) {
             const dot = document.createElement('button')
             dot.dataset.index = i
             dot.setAttribute('aria-label', 'Page ' + (i + 1))
@@ -182,7 +183,7 @@
     }
 
     wcPrototype.bindDrag = function () {
-        let self = this
+        const self = this
         self.mouse = self.mouse || self.handleMouse.bind(self)
 
         const mouseup = function () {
@@ -199,7 +200,7 @@
         }
 
         const events = {
-            mouseup: mouseup,
+            mouseup,
             mouseleave: mouseup,
             mousedown: function (e) {
                 e.preventDefault()
@@ -231,7 +232,7 @@
     }
 
     wcPrototype.handleMouse = function (e) {
-        let self = this
+        const self = this
         if (self.mouseDown) {
             self.isDrag = true
             self.ele.scrollLeft +=
@@ -241,7 +242,7 @@
     }
 
     wcPrototype.settingsBreakpoint = function () {
-        let self = this
+        const self = this
         const resp = self._opt.responsive
 
         if (resp) {
@@ -251,7 +252,7 @@
             })
 
             for (let i = 0; i < resp.length; ++i) {
-                let size = resp[i]
+                const size = resp[i]
                 if (document.body.clientWidth >= size.breakpoint) {
                     if (self.breakpoint !== size.breakpoint) {
                         self.opt = Object.assign({}, self._opt, size.settings)
@@ -270,7 +271,7 @@
     }
 
     wcPrototype.scrollTo = function (scrollTarget, scrollDuration, callback) {
-        let self = this
+        const self = this
         const date = new Date()
         const start = date.getTime()
         const animateIndex = self.animate_id
@@ -281,7 +282,7 @@
             self.ele.scrollLeft =
                 self.ele.scrollLeft +
                 (scrollTarget - self.ele.scrollLeft) *
-                self.opt.easing(0, now, 0, 1, scrollDuration)
+                    self.opt.easing(0, now, 0, 1, scrollDuration)
             if (now < scrollDuration && animateIndex === self.animate_id) {
                 _window.requestAnimationFrame(animate)
             } else {
@@ -294,7 +295,7 @@
     }
 
     wcPrototype.updateControls = function (event) {
-        let self = this
+        const self = this
 
         if (event && !self.opt.scrollPropagate) {
             event.stopPropagation()
@@ -318,7 +319,7 @@
                 self.arrows.next.classList.toggle(
                     'disabled',
                     Math.ceil(self.ele.scrollLeft + self.containerWidth) >=
-                    Math.floor(self.trackWidth) || disableArrows
+                        Math.floor(self.trackWidth) || disableArrows
                 )
 
                 self.arrows.next.setAttribute(
@@ -350,10 +351,15 @@
             const start = self.ele.scrollLeft
             const end = self.ele.scrollLeft + self.containerWidth
             const itemStart = self.itemWidth * index
-            const itemEnd = itemStart + self.itemWidth;
+            const itemEnd = itemStart + self.itemWidth
 
-            self.forEachTwo(slideClasses, (className) => /^left|right/.test(className) && slideClasses.remove(className))
-    
+            self.forEachTwo(
+                slideClasses,
+                (className) =>
+                    /^left|right/.test(className) &&
+                    slideClasses.remove(className)
+            )
+
             slideClasses.toggle('active', self.slide === index)
             if (middle === index || (extraMiddle && extraMiddle === index)) {
                 slideClasses.add('center')
@@ -362,16 +368,22 @@
                 slideClasses.add(
                     [
                         index < middle ? 'left' : 'right',
-                        Math.abs(index - (index < middle ? middle : extraMiddle || middle))
+                        Math.abs(
+                            index -
+                                (index < middle
+                                    ? middle
+                                    : extraMiddle || middle)
+                        )
                     ].join('-')
                 )
             }
-    
-            const isVisible = Math.ceil(itemStart) >= Math.floor(start)
-                && Math.floor(itemEnd) <= Math.ceil(end)
-    
+
+            const isVisible =
+                Math.ceil(itemStart) >= Math.floor(start) &&
+                Math.floor(itemEnd) <= Math.ceil(end)
+
             slideClasses.toggle('visible', isVisible)
-    
+
             if (isVisible !== wasVisible) {
                 self.emit('slide-' + (isVisible ? 'visible' : 'hidden'), {
                     slide: index
@@ -380,7 +392,9 @@
         })
 
         if (self.dots) {
-            self.forEachTwo(self.dots.children, (e, i) => e.classList.toggle('active', self.page === i))
+            self.forEachTwo(self.dots.children, (e, i) =>
+                e.classList.toggle('active', self.page === i)
+            )
         }
 
         if (event && self.opt.scrollLock) {
@@ -418,22 +432,22 @@
     wcPrototype.scrollItem = function (slide, dot, e) {
         if (e) {
             e.preventDefault()
-        }    
+        }
 
-        var self = this
+        const self = this
 
-        var originalSlide = slide
+        const originalSlide = slide
         ++self.animate_id
 
-        var prevSlide = self.slide
-        var position
+        const prevSlide = self.slide
+        let position
 
         if (dot === true) {
             slide = Math.round((slide * self.containerWidth) / self.itemWidth)
             position = slide * self.itemWidth
         } else {
             if (typeof slide === 'string') {
-                var backwards = slide === 'prev'
+                const backwards = slide === 'prev'
 
                 // use precise location if fractional slides are on
                 if (self.opt.slidesToScroll % 1 || self.opt.slidesToShow % 1) {
@@ -446,14 +460,14 @@
                 else slide += self.opt.slidesToScroll
 
                 if (self.opt.rewind) {
-                    var scrollLeft = self.ele.scrollLeft
+                    const scrollLeft = self.ele.scrollLeft
                     slide =
                         backwards && !scrollLeft
                             ? self.slides.length
                             : !backwards &&
                                 scrollLeft + self.containerWidth >= Math.floor(self.trackWidth)
-                                ? 0
-                                : slide
+                                    ? 0
+                                    : slide
                 }
             }
 
@@ -488,9 +502,9 @@
     }
 
     wcPrototype.emit = function (name, arg) {
-        let self = this
+        const self = this
 
-        var e = new _window.CustomEvent('glider-' + name, {
+        const e = new _window.CustomEvent('glider-' + name, {
             bubbles: !self.opt.eventPropagate,
             detail: arg
         })
@@ -498,14 +512,14 @@
     }
 
     wcPrototype.forEachTwo = function (arr, func) {
-        let isNotEven = arr.length % 2 !== 0
-        let count = Math.floor(arr.length / 2)
-        for (let i =0, j = count; i < count; i++, j++) {
+        const isNotEven = arr.length % 2 !== 0
+        const count = Math.floor(arr.length / 2)
+        for (let i = 0, j = count; i < count; i++, j++) {
             func(arr[i], i)
             func(arr[j], j)
         }
         if (isNotEven) {
-            let index = arr.length - 1
+            const index = arr.length - 1
             func(arr[index], index)
         }
     }

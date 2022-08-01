@@ -12,7 +12,7 @@
 
 <body>
     <div class="my-wrapper">
-        <div class="my-carousel">
+        <div id="my-carousel">
             <div><img src="https://via.placeholder.com/300?text=example1" alt="example1"></div>
             <div><img src="https://via.placeholder.com/300?text=example2" alt="example2"></div>
             <div><img src="https://via.placeholder.com/300?text=example3" alt="example3"></div>
@@ -35,7 +35,7 @@
     </div>
     <script>
         window.addEventListener('load', function () {
-            let element = document.querySelector('.my-carousel')
+            let element = document.getElementById('my-carousel')
             new WCarousel(element, {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -47,7 +47,7 @@
                     prev: '.wc-prev',
                     next: '.wc-next'
                 },
-                // screens greater than >= x px
+                // screens greater than >= n px
                 responsive: [
                     {
                         breakpoint: 480,

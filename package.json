@@ -39,8 +39,8 @@
   "lint-staged": {
     "linters": {
       "wcarousel.js": [
-        "prettier --write",
         "standard --fix",
+        "prettier --write --no-semi --single-quote --trailing-comma=none",
         "css-minify -f WCarousel.css -o ./dist/ --",
         "uglifyjs ./WCarousel.js --compress --mangle --comments -o ./dist/WCarousel.min.js --"
       ]
