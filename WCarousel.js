@@ -80,7 +80,6 @@
 
     if (self.opt.slidesToShow === 'auto' || typeof self.opt.autoSlide !== 'undefined') {
             const slideCount = self.containerWidth / self.opt.itemWidth
-
             self.opt.autoSlide = self.opt.slidesToShow = self.opt.exactWidth
                 ? slideCount
                 : Math.max(1, Math.floor(slideCount))
