@@ -32,6 +32,24 @@
     cursor: grabbing;
 }
 
+.wc-drag-area {
+    display: block;
+    width: 70px;
+    height: 6px;
+    margin: 10px auto;
+    background: lightgray;
+    border-radius: 10px;
+    position: relative;
+}
+
+.wc-drag-area [id^="wc-drag"] {
+    background-color: rgb(64, 69, 83);
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .wc-slide {
     user-select: none;
     justify-content: center;

@@ -114,6 +114,7 @@
         if (breakpointChanged || paging) {
             self.bindArrows()
             self.buildDots()
+            self.buildScroll()
             self.bindDrag()
         }
 
@@ -151,6 +152,22 @@
         })
     }
 
+    wcPrototype.buildScroll = function (slide) {
+        const self = this
+
+        if (!self.opt.scroll) {
+            if (self.scroll) self.scroll.innerHTML = ''
+            return
+        }
+
+        const scroll = document.querySelector(self.opt.scroll)
+        const width = (self.opt.slidesToShow / self.slides.length) * 100
+        const pos = slide * (width / self.opt.slidesToShow)
+
+        scroll.style.width = `${width}%`
+        scroll.style.marginLeft = `${pos}%`
+    }
+
     wcPrototype.buildDots = function () {
         const self = this
 
@@ -161,7 +178,10 @@
 
         if (typeof self.opt.dots === 'string') {
             self.dots = document.querySelector(self.opt.dots)
-        } else self.dots = self.opt.dots
+        } else {
+            self.dots = self.opt.dots
+        }
+
         if (!self.dots) return
 
         self.dots.innerHTML = ''
@@ -489,6 +509,8 @@
                 })
             }
         )
+
+        self.buildScroll(slide)
 
         return false
     }

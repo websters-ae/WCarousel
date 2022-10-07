@@ -1,6 +1,6 @@
 {
   "name": "wcarousel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Another lightweight and fast carousel",
   "main": "WCarousel.js",
   "scripts": {

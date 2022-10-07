@@ -31,7 +31,10 @@
         </div>
         <button class="wc-prev"></button>
         <button class="wc-next"></button>
-        <div id="wc-dots"></div>
+        <!-- <div id="wc-dots"></div> -->
+        <div class="wc-drag-area">
+            <div id="wc-drag-123"></div>
+        </div>
     </div>
     <script>
         window.addEventListener('load', function () {
@@ -42,6 +45,7 @@
                 scrollLock: true,
                 // itemWidth: 300,
                 // dots: '#wc-dots',
+                scroll: '#wc-drag-123',
                 draggable: true,
                 arrows: {
                     prev: '.wc-prev',
