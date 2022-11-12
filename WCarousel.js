@@ -78,7 +78,7 @@
         const breakpointChanged = self.settingsBreakpoint()
         if (!paging) paging = breakpointChanged
 
-    if (self.opt.slidesToShow === 'auto' || typeof self.opt.autoSlide !== 'undefined') {
+        if (self.opt.slidesToShow === 'auto' || typeof self.opt.autoSlide !== 'undefined') {
             const slideCount = self.containerWidth / self.opt.itemWidth
             self.opt.autoSlide = self.opt.slidesToShow = self.opt.exactWidth
                 ? slideCount
@@ -109,7 +109,15 @@
         self.preventClick = false
         self.move = false
 
-        self.opt.resizeLock && self.scrollTo(self.slide * self.itemWidth, 0)
+        let initialPos = self.slide * self.itemWidth
+
+        const page = document.querySelector('html')
+        if (page && page.getAttribute('dir') === 'rtl') {
+            self.ele.setAttribute('dir', 'ltr')
+            initialPos = self.itemWidth * self.slides.length - self.itemWidth
+        }
+
+        self.opt.resizeLock && self.scrollTo(initialPos, 0)
 
         if (breakpointChanged || paging) {
             self.bindArrows()
