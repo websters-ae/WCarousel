@@ -533,7 +533,7 @@
     wcPrototype.emit = function (name, arg) {
         const self = this
 
-        const e = new _window.CustomEvent('glider-' + name, {
+        const e = new _window.CustomEvent(self.ele.id + '-' + name, {
             bubbles: !self.opt.eventPropagate,
             detail: arg
         })
