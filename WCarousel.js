@@ -7,11 +7,11 @@
 })(function () {
     ;('use strict')
 
-    const _window = typeof window !== 'undefined' ? window : this
+    var _window = typeof window !== 'undefined' ? window : this
 
-    const WCarousel = (_window.WCarousel = function (element, settings) {
+    var WCarousel = (_window.WCarousel = function (element, settings) {
         if (element.wc) return element.wc
-        const self = this
+        var self = this
 
         self.ele = element
         self.ele.classList.add('wc-control')
@@ -62,7 +62,7 @@
         })
     })
 
-    const wcPrototype = WCarousel.prototype
+    var wcPrototype = WCarousel.prototype
 
     wcPrototype.init = function (refresh, paging) {
         const self = this
@@ -111,11 +111,17 @@
 
         let initialPos = self.slide * self.itemWidth
 
-        const page = document.querySelector('html')
-        if (page && page.getAttribute('dir') === 'rtl') {
-            self.ele.setAttribute('dir', 'ltr')
-            initialPos = self.itemWidth * self.slides.length - self.itemWidth
+        if (self.opt.initialSlide) {
+            initialPos = (self.opt.initialSlide - 1) * self.itemWidth
         }
+        else {
+            const page = document.querySelector('html')
+            if (page && page.getAttribute('dir') === 'rtl') {
+                self.ele.setAttribute('dir', 'ltr')
+                initialPos = self.itemWidth * self.slides.length - self.itemWidth
+            }
+        }
+
 
         self.opt.resizeLock && self.scrollTo(initialPos, 0)
 
