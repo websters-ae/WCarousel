@@ -532,7 +532,7 @@
     wcPrototype.event = function (ele, type, args) {
         const eventHandler = ele[type + 'EventListener'].bind(ele)
         Object.keys(args).forEach(function (k) {
-            eventHandler(k, args[k])
+            eventHandler(k, args[k], {passive: true})
         })
     }
 
