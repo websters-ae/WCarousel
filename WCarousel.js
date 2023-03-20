@@ -236,7 +236,6 @@
             mouseup,
             mouseleave: mouseup,
             mousedown: function (e) {
-                e.preventDefault()
                 e.stopPropagation()
                 self.mouseDown = e.clientX
                 self.ele.classList.add('drag')
@@ -251,7 +250,6 @@
             mousemove: self.mouse,
             click: function (e) {
                 if (self.preventClick && self.move) {
-                    e.preventDefault()
                     e.stopPropagation()
                 }
                 self.preventClick = false
