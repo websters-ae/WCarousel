@@ -40,6 +40,12 @@ jobs:
       - name: Build assets
         run: npm run build
 
+      - name: Prepare dist folder
+        run: |
+          mkdir -p dist
+          cp index.html dist/
+          cp my-styles.css dist/
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
