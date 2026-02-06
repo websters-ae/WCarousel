@@ -14,29 +14,33 @@
 <body>
     <div class="my-wrapper">
         <div id="my-carousel">
-            <div><img src="https://via.placeholder.com/300?text=example1" alt="example1"></div>
-            <div><img src="https://via.placeholder.com/300?text=example2" alt="example2"></div>
-            <div><img src="https://via.placeholder.com/300?text=example3" alt="example3"></div>
-            <div><img src="https://via.placeholder.com/300?text=example4" alt="example4"></div>
-            <div><img src="https://via.placeholder.com/300?text=example5" alt="example5"></div>
-            <div><img src="https://via.placeholder.com/300?text=example6" alt="example6"></div>
-            <div><img src="https://via.placeholder.com/300?text=example7" alt="example7"></div>
-            <div><img src="https://via.placeholder.com/300?text=example8" alt="example8"></div>
-            <div><img src="https://via.placeholder.com/300?text=example9" alt="example9"></div>
-            <div><img src="https://via.placeholder.com/300?text=example10" alt="example10"></div>
-            <div><img src="https://via.placeholder.com/300?text=example11" alt="example11"></div>
-            <div><img src="https://via.placeholder.com/300?text=example12" alt="example12"></div>
-            <div><img src="https://via.placeholder.com/300?text=example13" alt="example13"></div>
-            <div><img src="https://via.placeholder.com/300?text=example14" alt="example14"></div>
-            <div><img src="https://via.placeholder.com/300?text=example15" alt="example15"></div>
+            <div><img src="https://placehold.co/300?text=example01" alt="example01"></div>
+            <div><img src="https://placehold.co/300?text=example02" alt="example02"></div>
+            <div><img src="https://placehold.co/300?text=example03" alt="example03"></div>
+            <div><img src="https://placehold.co/300?text=example04" alt="example04"></div>
+            <div><img src="https://placehold.co/300?text=example05" alt="example05"></div>
+            <div><img src="https://placehold.co/300?text=example06" alt="example06"></div>
+            <div><img src="https://placehold.co/300?text=example07" alt="example07"></div>
+            <div><img src="https://placehold.co/300?text=example08" alt="example08"></div>
+            <div><img src="https://placehold.co/300?text=example09" alt="example09"></div>
+            <div><img src="https://placehold.co/300?text=example10" alt="example10"></div>
+            <div><img src="https://placehold.co/300?text=example11" alt="example11"></div>
+            <div><img src="https://placehold.co/300?text=example12" alt="example12"></div>
+            <div><img src="https://placehold.co/300?text=example13" alt="example13"></div>
+            <div><img src="https://placehold.co/300?text=example14" alt="example14"></div>
+            <div><img src="https://placehold.co/300?text=example15" alt="example15"></div>
         </div>
         <button class="wc-prev"></button>
         <button class="wc-next"></button>
+        <!-- Uncomment the below div to see dots navigation -->
         <!-- <div id="wc-dots"></div> -->
         <div class="wc-drag-area">
             <div id="wc-drag-123"></div>
         </div>
     </div>
+    <em style="display: block; text-align: center;">
+        Try to resize to view port to see responsive behavior
+    </em>
     <script>
         window.addEventListener('load', function () {
             let element = document.getElementById('my-carousel')
@@ -45,7 +49,7 @@
                 slidesToScroll: 1,
                 scrollLock: true,
                 // itemWidth: 300,
-                // dots: '#wc-dots',
+                // dots: '#wc-dots', uncomment to see dots navigation
                 scroll: '#wc-drag-123',
                 draggable: true,
                 arrows: {
