@@ -1,17 +1,18 @@
+/* global define */
 ;(function (factory) {
     typeof define === 'function' && define.amd
         ? define(factory)
         : typeof exports === 'object'
-            ? (module.exports = factory())
-            : factory()
+        ? (module.exports = factory())
+        : factory()
 })(function () {
-    ;('use strict')
+    'use strict'
 
-    var _window = typeof window !== 'undefined' ? window : this
+    const _window = typeof window !== 'undefined' ? window : this
 
-    var WCarousel = (_window.WCarousel = function (element, settings) {
+    const WCarousel = (_window.WCarousel = function (element, settings) {
         if (element.wc) return element.wc
-        var self = this
+        const self = this
 
         self.ele = element
         self.ele.classList.add('wc-control')
@@ -62,7 +63,7 @@
         })
     })
 
-    var wcPrototype = WCarousel.prototype
+    const wcPrototype = WCarousel.prototype
 
     wcPrototype.init = function (refresh, paging) {
         const self = this
@@ -78,7 +79,10 @@
         const breakpointChanged = self.settingsBreakpoint()
         if (!paging) paging = breakpointChanged
 
-        if (self.opt.slidesToShow === 'auto' || typeof self.opt.autoSlide !== 'undefined') {
+        if (
+            self.opt.slidesToShow === 'auto' ||
+            typeof self.opt.autoSlide !== 'undefined'
+        ) {
             const slideCount = self.containerWidth / self.opt.itemWidth
             self.opt.autoSlide = self.opt.slidesToShow = self.opt.exactWidth
                 ? slideCount
@@ -113,15 +117,14 @@
 
         if (self.opt.initialSlide) {
             initialPos = (self.opt.initialSlide - 1) * self.itemWidth
-        }
-        else {
+        } else {
             const page = document.querySelector('html')
             if (page && page.getAttribute('dir') === 'rtl') {
                 self.ele.setAttribute('dir', 'ltr')
-                initialPos = self.itemWidth * self.slides.length - self.itemWidth
+                initialPos =
+                    self.itemWidth * self.slides.length - self.itemWidth
             }
         }
-
 
         self.opt.resizeLock && self.scrollTo(initialPos, 0)
 
@@ -153,7 +156,8 @@
                     arrow = document.querySelector(arrow)
                 }
                 if (arrow) {
-                    arrow.func = arrow.func || self.scrollItem.bind(self, direction)
+                    arrow.func =
+                        arrow.func || self.scrollItem.bind(self, direction)
                     self.event(arrow, 'remove', {
                         click: arrow.func
                     })
@@ -202,7 +206,11 @@
         self.dots.setAttribute('role', 'tablist')
         self.dots.classList.add('wc-dots')
 
-    for (let i = 0; i < Math.ceil(self.slides.length / self.opt.slidesToShow); ++i) {
+        for (
+            let i = 0;
+            i < Math.ceil(self.slides.length / self.opt.slidesToShow);
+            ++i
+        ) {
             const dot = document.createElement('button')
             dot.dataset.index = i
             dot.setAttribute('aria-label', 'Page ' + (i + 1))
@@ -363,7 +371,8 @@
         self.slide = Math.round(self.ele.scrollLeft / self.itemWidth)
         self.page = Math.round(self.ele.scrollLeft / self.containerWidth)
 
-        const middle = self.slide + Math.floor(Math.floor(self.opt.slidesToShow) / 2)
+        const middle =
+            self.slide + Math.floor(Math.floor(self.opt.slidesToShow) / 2)
 
         let extraMiddle = Math.floor(self.opt.slidesToShow) % 2 ? 0 : middle + 1
         if (Math.floor(self.opt.slidesToShow) === 1) {
@@ -372,7 +381,10 @@
 
         // the last page may be less than one half of a normal page width so
         // the page is rounded down. when at the end, force the page to turn
-        if (self.ele.scrollLeft + self.containerWidth >= Math.floor(self.trackWidth)) {
+        if (
+            self.ele.scrollLeft + self.containerWidth >=
+            Math.floor(self.trackWidth)
+        ) {
             self.page = self.dots ? self.dots.children.length - 1 : 0
         }
 
@@ -433,10 +445,17 @@
             self.scrollLock = setTimeout(function () {
                 clearTimeout(self.scrollLock)
                 // dont attempt to scroll less than a pixel fraction - causes looping
-                if (Math.abs(self.ele.scrollLeft / self.itemWidth - self.slide) > 0.02) {
+                if (
+                    Math.abs(
+                        self.ele.scrollLeft / self.itemWidth - self.slide
+                    ) > 0.02
+                ) {
                     if (!self.mouseDown) {
                         // Only scroll if not at the end (#94)
-                        if (self.trackWidth > self.containerWidth + self.ele.scrollLeft) {
+                        if (
+                            self.trackWidth >
+                            self.containerWidth + self.ele.scrollLeft
+                        ) {
                             self.scrollItem(self.getCurrentSlide())
                         }
                     }
@@ -496,9 +515,10 @@
                         backwards && !scrollLeft
                             ? self.slides.length
                             : !backwards &&
-                                scrollLeft + self.containerWidth >= Math.floor(self.trackWidth)
-                                    ? 0
-                                    : slide
+                              scrollLeft + self.containerWidth >=
+                                  Math.floor(self.trackWidth)
+                            ? 0
+                            : slide
                 }
             }
 
@@ -517,7 +537,12 @@
                 self.updateControls()
                 self.emit('animated', {
                     value: originalSlide,
-                    type: typeof originalSlide === 'string' ? 'arrow' : dot ? 'dot' : 'slide'
+                    type:
+                        typeof originalSlide === 'string'
+                            ? 'arrow'
+                            : dot
+                            ? 'dot'
+                            : 'slide'
                 })
             }
         )
@@ -530,7 +555,7 @@
     wcPrototype.event = function (ele, type, args) {
         const eventHandler = ele[type + 'EventListener'].bind(ele)
         Object.keys(args).forEach(function (k) {
-            eventHandler(k, args[k], {passive: true})
+            eventHandler(k, args[k], { passive: true })
         })
     }
 

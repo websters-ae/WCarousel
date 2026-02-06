@@ -5,6 +5,7 @@
   "main": "WCarousel.js",
   "scripts": {
     "build": "npx css-minify -f WCarousel.css -o ./dist/ && npx uglifyjs ./WCarousel.js --compress --mangle --comments -o ./dist/WCarousel.min.js",
+    "lint": "standard --fix && prettier --write --no-semi --single-quote --trailing-comma=none WCarousel.js WCarousel.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

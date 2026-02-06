@@ -42,7 +42,7 @@
     position: relative;
 }
 
-.wc-drag-area [id^="wc-drag"] {
+.wc-drag-area [id^='wc-drag'] {
     background-color: rgb(64, 69, 83);
     border-radius: 10px;
     position: absolute;
@@ -63,8 +63,8 @@
     max-width: 100%;
 }
 
-[class^="wc-prev"],
-[class^="wc-next"] {
+[class^='wc-prev'],
+[class^='wc-next'] {
     user-select: none;
     position: absolute;
     outline: none;
@@ -77,8 +77,8 @@
     top: 40%;
     cursor: pointer;
     color: #666;
-    transition: opacity .5s cubic-bezier(.17, .67, .83, .67),
-        color .5s cubic-bezier(.17, .67, .83, .67);
+    transition: opacity 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67),
+        color 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
     --radius: 44px;
     width: var(--radius);
@@ -89,28 +89,28 @@
     opacity: 0.9;
 }
 
-[class^="wc-prev"]:hover,
-[class^="wc-next"]:hover,
-[class^="wc-prev"]:focus,
-[class^="wc-next"]:focus {
+[class^='wc-prev']:hover,
+[class^='wc-next']:hover,
+[class^='wc-prev']:focus,
+[class^='wc-next']:focus {
     color: #a89cc8;
 }
 
-[class^="wc-next"] {
+[class^='wc-next'] {
     right: -23px;
     left: auto;
 }
 
-[class^="wc-prev"]:before {
+[class^='wc-prev']:before {
     content: url('data:image/svg+xml,<svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 }
 
-[class^="wc-next"]:before {
+[class^='wc-next']:before {
     content: url('data:image/svg+xml,<svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 }
 
-[class^="wc-next"].disabled,
-[class^="wc-prev"].disabled {
+[class^='wc-next'].disabled,
+[class^='wc-prev'].disabled {
     display: none;
 }
 
@@ -154,7 +154,7 @@
     height: 0;
 }
 
-@media(max-width: 36em) {
+@media (max-width: 36em) {
     .wc-control::-webkit-scrollbar {
         opacity: 1;
         -webkit-appearance: none;
@@ -166,6 +166,6 @@
         opacity: 1;
         border-radius: 99px;
         background-color: rgba(156, 156, 156, 0.25);
-        box-shadow: 0 0 1px rgba(255, 255, 255, .25);
+        box-shadow: 0 0 1px rgba(255, 255, 255, 0.25);
     }
 }
